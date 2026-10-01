@@ -1,0 +1,142 @@
+﻿endpoint,legacy_source,params,migration_status,parallel_note
+apiAIChat,AIAgent.gs,"token, period, selection, message, history",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiAIOptions,AIAgent.gs,token,PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiAccountDelete,AccountMerge.gs,"token, nik, reason",CONTRACT_REGISTERED,Disabled in Go while PARALLEL_MODE=true; production write remains in Apps Script until parity/cut-over.
+apiAccountDeleteCheck,AccountMerge.gs,"token, nik",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiAccountMergeCommit,AccountMerge.gs,"token, keep, drop, reason",CONTRACT_REGISTERED,Disabled in Go while PARALLEL_MODE=true; production write remains in Apps Script until parity/cut-over.
+apiAccountMergePreview,AccountMerge.gs,"token, keep, drop",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiActivity,Activity.gs,"token, q, action",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiAddDealer,DealerImport.gs,"token, input",CONTRACT_REGISTERED,Disabled in Go while PARALLEL_MODE=true; production write remains in Apps Script until parity/cut-over.
+apiAdmin,Admin.gs,token,PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiAdminBanner,Activity.gs,token,PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiAnalisa,Analisa.gs,"token, period, selection",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiBackupSettings,Backup.gs,"token, keep, statusId",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiBootstrap,Code.gs,token,PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiBrandExportData,BrandExport.gs,"token, period, selection",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiBrandExportOptions,BrandExport.gs,token,PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiChangePin,Auth.gs,"token, pin",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiCheckpointRestore,Activity.gs,"token, file, reason",CONTRACT_REGISTERED,Disabled in Go while PARALLEL_MODE=true; production write remains in Apps Script until parity/cut-over.
+apiCheckpoints,Activity.gs,token,PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiCommitContactBulk,DealerContact.gs,"token, id, reason",CONTRACT_REGISTERED,Disabled in Go while PARALLEL_MODE=true; production write remains in Apps Script until parity/cut-over.
+apiCommitCustomerBulk,BulkAdmin.gs,"token, id, reason",CONTRACT_REGISTERED,Disabled in Go while PARALLEL_MODE=true; production write remains in Apps Script until parity/cut-over.
+apiCommitDealerTransfer,BulkAdmin.gs,"token, id, reason",CONTRACT_REGISTERED,Disabled in Go while PARALLEL_MODE=true; production write remains in Apps Script until parity/cut-over.
+apiCommitDealers,DealerImport.gs,"token, id",CONTRACT_REGISTERED,Disabled in Go while PARALLEL_MODE=true; production write remains in Apps Script until parity/cut-over.
+apiCommitMasterBulk,BulkAdmin.gs,"token, id, reason",CONTRACT_REGISTERED,Disabled in Go while PARALLEL_MODE=true; production write remains in Apps Script until parity/cut-over.
+apiCommitRestore,Admin.gs,"token, id",CONTRACT_REGISTERED,Disabled in Go while PARALLEL_MODE=true; production write remains in Apps Script until parity/cut-over.
+apiCommitUsers,Mobile.gs.gs,"token, id",CONTRACT_REGISTERED,Disabled in Go while PARALLEL_MODE=true; production write remains in Apps Script until parity/cut-over.
+apiCompare,Analisa.gs,"token, period, selection, opts",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiContactRequests,DealerContact.gs,"token, status",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiCustomerBulkExport,BulkAdmin.gs,token,CONTRACT_REGISTERED,Disabled in Go while PARALLEL_MODE=true; production write remains in Apps Script until parity/cut-over.
+apiDOS,SellOut.gs,"token, period, selection, filter, page",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiDOSExportData,DOSExport.gs,"token, period, selection",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiDOSExportOptions,DOSExport.gs,token,PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiDashboard,Code.gs,"token, period, selection",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiDealerContact,DealerContact.gs,"token, id",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiDealerDelete,DealerEdit.gs,"token, uniqs, reason",CONTRACT_REGISTERED,Disabled in Go while PARALLEL_MODE=true; production write remains in Apps Script until parity/cut-over.
+apiDealerDeleteCheck,DealerEdit.gs,"token, uniq",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiDealerDetail,Code.gs,"token, period, selection, customer",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiDealerDownloadAll,DealerUpload.gs,token,PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiDealerEditDetail,DealerEdit.gs,"token, uniq",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiDealerHistory,Code.gs,"token, selection, brand, from, to, page, query, filters",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiDealerHistorySummary,Code.gs,"token, selection, brand, from, to, query, filters, level",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiDealerIndukPeek,DealerEdit.gs,"token, uniq, baru",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiDealerRegionGet,DealerRegion.gs,"token, q",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiDealerRegionLookup,DealerRegion.gs,"token, dealer",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiDealerRegionSave,DealerRegion.gs,"token, op, reason",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiDealerSave,DealerEdit.gs,"token, uniq, input, reason",CONTRACT_REGISTERED,Disabled in Go while PARALLEL_MODE=true; production write remains in Apps Script until parity/cut-over.
+apiDealerSearch,DealerEdit.gs,"token, q",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiDealerStock,Mobile.gs.gs,"token, period, selection, customer",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiDealerTemplate,DealerTemplate.gs,token,PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiDealerTutupAjukan,DealerTutup.gs,"token, id, tanggal, alasan",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiDealerTutupList,DealerTutup.gs,token,PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiDealerTutupProses,DealerTutup.gs,"token, row, aksi, catatan",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiDealerTutupUpload,DealerTutup.gs,"token, rows, commit",CONTRACT_REGISTERED,Disabled in Go while PARALLEL_MODE=true; production write remains in Apps Script until parity/cut-over.
+apiDealerUploadCommit,DealerUpload.gs,"token, id, reason",CONTRACT_REGISTERED,Disabled in Go while PARALLEL_MODE=true; production write remains in Apps Script until parity/cut-over.
+apiDealerUploadRejected,DealerUpload.gs,"token, id",CONTRACT_REGISTERED,Disabled in Go while PARALLEL_MODE=true; production write remains in Apps Script until parity/cut-over.
+apiDealerUploadStage,DealerUpload.gs,form,CONTRACT_REGISTERED,Disabled in Go while PARALLEL_MODE=true; production write remains in Apps Script until parity/cut-over.
+apiDemoOptions,Auth.gs,token,PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiDownloadInfo,Info.gs,"token, id",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiEarlyWarning,Analisa.gs,"token, period, level, brand, metric, selection, filters",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiExec,Eksekutif.gs,"token, period, selection",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiExportDealerContacts,DealerContact.gs,token,PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiExportDealerCsv,Code.gs,"token, period, selection, filter, sort",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiExportDealerExcel,Code.gs,"token, selection, from, to, filter, sort",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiExportDealerHistory,Code.gs,"token, selection, brand, from, to, query, filters",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiExportSummary,BulkAdmin.gs,"token, period, selection",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiGrowthType,Analisa.gs,"token, period, selection, brand, opts",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiHariLibur,Analisa.gs,token,PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiHariLiburAdmin,Analisa.gs,token,PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiHariLiburHapus,Analisa.gs,"token, tanggal",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiHariLiburSave,Analisa.gs,"token, tanggal, ket, aktif",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiHealthCheck,Health.gs,token,PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiIndukBulkCommit,DealerEdit.gs,"token, id, reason",CONTRACT_REGISTERED,Disabled in Go while PARALLEL_MODE=true; production write remains in Apps Script until parity/cut-over.
+apiIndukBulkRejected,DealerEdit.gs,"token, id",CONTRACT_REGISTERED,Disabled in Go while PARALLEL_MODE=true; production write remains in Apps Script until parity/cut-over.
+apiIndukBulkStage,DealerEdit.gs,form,CONTRACT_REGISTERED,Disabled in Go while PARALLEL_MODE=true; production write remains in Apps Script until parity/cut-over.
+apiIndukBulkTemplate,DealerEdit.gs,token,CONTRACT_REGISTERED,Disabled in Go while PARALLEL_MODE=true; production write remains in Apps Script until parity/cut-over.
+apiInfo,Info.gs,"token, page, query, region",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiKPIExportData,KPIExport.gs,"token, period, selection",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiKPIExportOptions,KPIExport.gs,"token, period",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiKpiCopy,KpiAdmin.gs,"token, from, to, reason",CONTRACT_REGISTERED,Disabled in Go while PARALLEL_MODE=true; production write remains in Apps Script until parity/cut-over.
+apiKpiGet,KpiAdmin.gs,"token, period",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiKpiSaveRegion,KpiAdmin.gs,"token, period, region, rows, reason",CONTRACT_REGISTERED,Disabled in Go while PARALLEL_MODE=true; production write remains in Apps Script until parity/cut-over.
+apiKpiSaveRgm,KpiAdmin.gs,"token, period, nik, rows, reason",CONTRACT_REGISTERED,Disabled in Go while PARALLEL_MODE=true; production write remains in Apps Script until parity/cut-over.
+apiKpiTree,Code.gs,"token, period, selection",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiLogin,Auth.gs,"nik, pin",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiLogout,Auth.gs,token,PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiMasterBulkRejected,BulkAdmin.gs,"token, id",CONTRACT_REGISTERED,Disabled in Go while PARALLEL_MODE=true; production write remains in Apps Script until parity/cut-over.
+apiMasterBulkTemplate,BulkAdmin.gs,"token, type",CONTRACT_REGISTERED,Disabled in Go while PARALLEL_MODE=true; production write remains in Apps Script until parity/cut-over.
+apiMyRank,Code.gs,"token, period, selection",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiPeriodLock,Admin.gs,"token, period, locked, reason",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiPersonKpi,Code.gs,"token, period, nik",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiPotensi,Analisa.gs,"token, period, selection",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiPublishConfig,Data.gs,token,CONTRACT_REGISTERED,Disabled in Go while PARALLEL_MODE=true; production write remains in Apps Script until parity/cut-over.
+apiPublishImport,Data.gs,"token, id",CONTRACT_REGISTERED,Disabled in Go while PARALLEL_MODE=true; production write remains in Apps Script until parity/cut-over.
+apiPublishSO,SellOut.gs,"token, id",CONTRACT_REGISTERED,Disabled in Go while PARALLEL_MODE=true; production write remains in Apps Script until parity/cut-over.
+apiRank,Code.gs,"token, period, national, level",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiRankDetail,Mobile.gs.gs,"token, period, nik",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiRegionImportTemplate,BulkAdmin.gs,"token, kind",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiRegionMapGet,RegionMap.gs,token,PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiRegionMapSave,RegionMap.gs,"token, input, reason",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiResetPin,Auth.gs,"token, nik",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiReviewDealerContacts,DealerContact.gs,"token, ids, decision, reason",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiSaveDealerContact,DealerContact.gs,"token, input",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiSaveExportAccess,ExportAccess.gs,"token, input",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiSaveUser,Admin.gs,"token, input",CONTRACT_REGISTERED,Disabled in Go while PARALLEL_MODE=true; production write remains in Apps Script until parity/cut-over.
+apiSetActive,Auth.gs,"token, nik, isActive",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiSetInfoActive,Info.gs,"token, id, value",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiStageContactBulk,DealerContact.gs,form,CONTRACT_REGISTERED,Disabled in Go while PARALLEL_MODE=true; production write remains in Apps Script until parity/cut-over.
+apiStageCustomerBulk,BulkAdmin.gs,form,CONTRACT_REGISTERED,Disabled in Go while PARALLEL_MODE=true; production write remains in Apps Script until parity/cut-over.
+apiStageDealerTransfer,BulkAdmin.gs,form,CONTRACT_REGISTERED,Disabled in Go while PARALLEL_MODE=true; production write remains in Apps Script until parity/cut-over.
+apiStageDealers,DealerImport.gs,form,CONTRACT_REGISTERED,Disabled in Go while PARALLEL_MODE=true; production write remains in Apps Script until parity/cut-over.
+apiStageImport,Data.gs,form,CONTRACT_REGISTERED,Disabled in Go while PARALLEL_MODE=true; production write remains in Apps Script until parity/cut-over.
+apiStageMasterBulk,BulkAdmin.gs,form,CONTRACT_REGISTERED,Disabled in Go while PARALLEL_MODE=true; production write remains in Apps Script until parity/cut-over.
+apiStageRestore,Admin.gs,"token, version, kind, period, regions, reason",CONTRACT_REGISTERED,Disabled in Go while PARALLEL_MODE=true; production write remains in Apps Script until parity/cut-over.
+apiStageSO,SellOut.gs,form,CONTRACT_REGISTERED,Disabled in Go while PARALLEL_MODE=true; production write remains in Apps Script until parity/cut-over.
+apiStageUsers,Mobile.gs.gs,form,CONTRACT_REGISTERED,Disabled in Go while PARALLEL_MODE=true; production write remains in Apps Script until parity/cut-over.
+apiStartBackup,Backup.gs,token,PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiStartDemo,Auth.gs,"token, targetNik",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiStatusBulkCommit,AccountStatus.gs,"token, id, reason",CONTRACT_REGISTERED,Disabled in Go while PARALLEL_MODE=true; production write remains in Apps Script until parity/cut-over.
+apiStatusBulkRejected,AccountStatus.gs,"token, id",CONTRACT_REGISTERED,Disabled in Go while PARALLEL_MODE=true; production write remains in Apps Script until parity/cut-over.
+apiStatusBulkStage,AccountStatus.gs,form,CONTRACT_REGISTERED,Disabled in Go while PARALLEL_MODE=true; production write remains in Apps Script until parity/cut-over.
+apiStopDemo,Auth.gs,token,PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiSubmitDealerContact,DealerContact.gs,"token, input",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiSyncFileDownload,SyncStatus.gs,"token, fileId",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiSyncRetry,SyncStatus.gs,"token, fileId",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiSyncRunNow,SyncStatus.gs,token,PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiSyncSchedule,SyncStatus.gs,"token, on",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiSyncStatus,SyncStatus.gs,token,PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiTargetGet,KpiAdmin.gs,"token, period, big, sub",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiTargetSave,KpiAdmin.gs,"token, period, changes, reason",CONTRACT_REGISTERED,Disabled in Go while PARALLEL_MODE=true; production write remains in Apps Script until parity/cut-over.
+apiTeam,Code.gs,"token, period, level, brand, selection, filters",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiTeamComparison,Weekly.gs,"token, period, selection, request",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiTeamKpi,Code.gs,"token, period, selection",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiTransactionGroups,Mobile.gs.gs,"token, period, selection, page, from, to, sort, pageSize",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiTransactions,Code.gs,"token, period, selection, customer, page, dateFrom, dateTo, sort, pageSize",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiTransferDealerTemplate,BulkAdmin.gs,token,PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiTransferRejected,BulkAdmin.gs,"token, id",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiUploadInfo,Info.gs,form,CONTRACT_REGISTERED,Disabled in Go while PARALLEL_MODE=true; production write remains in Apps Script until parity/cut-over.
+apiUserPinExport,DealerEdit.gs,"token, gen",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiUserTemplate,Mobile.gs.gs,token,PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiUsersRejected,Mobile.gs.gs,"token, id",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiV6Boot,Analisa.gs,token,PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.
+apiWeeklyAnalysis,Weekly.gs,"token, period, selection, request",PORTED_CANDIDATE,Implemented in Go; must pass golden-output parity before cut-over.

@@ -1,0 +1,1 @@
+function apiDealerTemplate(token){adminGuard_(token);return templateXlsx_('Template-Dealer-Baru.xlsx','Template_Dealer',['KODE CUSTOMER','NAMA INDUK CUSTOMER','NIK SALES','ID_DEALER','KOTA','ALAMAT','No. HP','SUB REGION'],[],['Simpan sebagai XLSX, lalu Admin > Tambah dealer > Periksa upload dealer.']);}

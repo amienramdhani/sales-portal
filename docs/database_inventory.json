@@ -1,0 +1,340 @@
+[
+  {
+    "sheet": "Master_Customer",
+    "rows_including_header": 4955,
+    "data_rows": 4954,
+    "headers": [
+      "ID_DEALER",
+      "ALIAS",
+      "NAMA CUSTOMER",
+      "KODE CUSTOMER",
+      "NAMA INDUK CUSTOMER",
+      "REGION",
+      "SUB REGION",
+      "ALAMAT",
+      "KOTA",
+      "No. HP",
+      "NIK SALES"
+    ]
+  },
+  {
+    "sheet": "Dealer_Assignment_History",
+    "rows_including_header": 15,
+    "data_rows": 14,
+    "headers": [
+      "KODE CUSTOMER",
+      "NIK SALES",
+      "BERLAKU_MULAI",
+      "BERLAKU_SAMPAI",
+      "SUMBER",
+      "NOTE",
+      "UPDATED_BY",
+      "UPDATED_AT"
+    ]
+  },
+  {
+    "sheet": "Log_Sync",
+    "rows_including_header": 190,
+    "data_rows": 189,
+    "headers": [
+      "WAKTU",
+      "FILE",
+      "JENIS",
+      "STATUS",
+      "BULAN",
+      "REGION",
+      "BARIS",
+      "QTY",
+      "KETERANGAN"
+    ]
+  },
+  {
+    "sheet": "Target_Input",
+    "rows_including_header": 62,
+    "data_rows": 61,
+    "headers": [
+      "PERIODE TARGET",
+      "NIK SALES",
+      "NAMA SALES",
+      "ST ITEL",
+      "ST MOTOPAD",
+      "ST MOTOROLA",
+      "ST VILLAON",
+      "DA ITEL",
+      "DA MOTOPAD",
+      "DA MOTOROLA",
+      "DA VILLAON",
+      "NOO MOTOPAD"
+    ]
+  },
+  {
+    "sheet": "Hari_Libur",
+    "rows_including_header": 4,
+    "data_rows": 3,
+    "headers": [
+      "TANGGAL",
+      "KETERANGAN",
+      "AKTIF"
+    ]
+  },
+  {
+    "sheet": "Export_Access",
+    "rows_including_header": 11,
+    "data_rows": 10,
+    "headers": [
+      "NIK",
+      "JENIS_EXPORT",
+      "AKTIF",
+      "UPDATED_BY",
+      "UPDATED_AT"
+    ]
+  },
+  {
+    "sheet": "AI_Audit_Log",
+    "rows_including_header": 53,
+    "data_rows": 52,
+    "headers": [
+      "TIMESTAMP",
+      "NIK",
+      "ROLE",
+      "QUESTION",
+      "INTENT",
+      "SCOPE",
+      "ROWS_RETURNED",
+      "MODEL",
+      "STATUS",
+      "DURATION_MS"
+    ]
+  },
+  {
+    "sheet": "Version_Log",
+    "rows_including_header": 45,
+    "data_rows": 44,
+    "headers": [
+      "WAKTU",
+      "AKTOR",
+      "ALASAN",
+      "SNAPSHOT"
+    ]
+  },
+  {
+    "sheet": "Backup_Log",
+    "rows_including_header": 1,
+    "data_rows": 0,
+    "headers": [
+      "WAKTU",
+      "JENIS",
+      "STATUS",
+      "FOLDER",
+      "KETERANGAN"
+    ]
+  },
+  {
+    "sheet": "Period_Locks",
+    "rows_including_header": 1,
+    "data_rows": 0,
+    "headers": [
+      "PERIODE",
+      "TERKUNCI",
+      "ALASAN",
+      "OLEH",
+      "WAKTU"
+    ]
+  },
+  {
+    "sheet": "Dealer_Region",
+    "rows_including_header": 1,
+    "data_rows": 0,
+    "headers": [
+      "KODE CUSTOMER",
+      "WILAYAH",
+      "BERLAKU_MULAI"
+    ]
+  },
+  {
+    "sheet": "Admin_Access",
+    "rows_including_header": 5,
+    "data_rows": 4,
+    "headers": [
+      "NIK",
+      "WILAYAH"
+    ]
+  },
+  {
+    "sheet": "DOS_Config",
+    "rows_including_header": 2,
+    "data_rows": 1,
+    "headers": [
+      "WILAYAH",
+      "DOS_MIN",
+      "DOS_MAX"
+    ]
+  },
+  {
+    "sheet": "Informasi",
+    "rows_including_header": 1,
+    "data_rows": 0,
+    "headers": [
+      "ID",
+      "JUDUL",
+      "ISI",
+      "WILAYAH",
+      "FILE_ID",
+      "FILE_NAME",
+      "MIME",
+      "BYTES",
+      "PENULIS_NIK",
+      "PENULIS_NAMA",
+      "DIBUAT",
+      "AKTIF",
+      "WILAYAH_LIST",
+      "ROLE_LIST"
+    ]
+  },
+  {
+    "sheet": "_Auth",
+    "rows_including_header": 106,
+    "data_rows": 105,
+    "headers": [
+      "NIK",
+      "SALT",
+      "PIN_HASH",
+      "AKTIF",
+      "VERSI",
+      "WAJIB_GANTI",
+      "GAGAL",
+      "LOCK_UNTIL"
+    ]
+  },
+  {
+    "sheet": "Audit_Log",
+    "rows_including_header": 469,
+    "data_rows": 468,
+    "headers": [
+      "WAKTU_UTC",
+      "NIK",
+      "AKSI",
+      "KETERANGAN"
+    ]
+  },
+  {
+    "sheet": "KPI_Config",
+    "rows_including_header": 25,
+    "data_rows": 24,
+    "headers": [
+      "PERIODE",
+      "WILAYAH_KPI",
+      "KELOMPOK_KPI",
+      "METRIK",
+      "BRAND",
+      "BOBOT",
+      "BATAS_SKOR",
+      "AKTIF",
+      "INDIKATOR_ID",
+      "LABEL",
+      "TYPE_FILTER",
+      "MIN_QTY_DA"
+    ]
+  },
+  {
+    "sheet": "Target_Periode",
+    "rows_including_header": 211,
+    "data_rows": 210,
+    "headers": [
+      "PERIODE",
+      "NIK",
+      "BRAND",
+      "METRIK",
+      "TARGET",
+      "INDIKATOR_ID"
+    ]
+  },
+  {
+    "sheet": "Product_Rules",
+    "rows_including_header": 8,
+    "data_rows": 7,
+    "headers": [
+      "BRAND",
+      "BRAND_UTAMA",
+      "MASUK_QTY"
+    ]
+  },
+  {
+    "sheet": "Region_Map",
+    "rows_including_header": 45,
+    "data_rows": 44,
+    "headers": [
+      "REGION",
+      "WILAYAH_KPI",
+      "KANAL"
+    ]
+  },
+  {
+    "sheet": "Master_Sales",
+    "rows_including_header": 999,
+    "data_rows": 998,
+    "headers": [
+      "NIK KARYAWAN",
+      "SALES",
+      "POSISI",
+      "REGION",
+      "NIK ATASAN",
+      "PIN AKSES"
+    ]
+  },
+  {
+    "sheet": "Master_Product",
+    "rows_including_header": 1000,
+    "data_rows": 999,
+    "headers": [
+      "KODE BARANG",
+      "NAMA BARANG",
+      "BRAND",
+      "KATEGORI PRODUK",
+      "TYPE"
+    ]
+  },
+  {
+    "sheet": "Master_Transaksi",
+    "rows_including_header": 12071,
+    "data_rows": 12070,
+    "headers": [
+      "TANGGAL TRANSAKSI",
+      "BADAN USAHA",
+      "NO TRANSAKSI",
+      "NOMOR SJ",
+      "KODE GUDANG",
+      "KODE PRODUK",
+      "KODE CUSTOMER",
+      "NIK SALES",
+      "QTY",
+      "AMOUNT"
+    ]
+  },
+  {
+    "sheet": "Master_Target",
+    "rows_including_header": 1000,
+    "data_rows": 999,
+    "headers": [
+      "NIK SALES",
+      "NAMA",
+      "BRAND",
+      "TARGET QTY PENJUALAN",
+      "TARGET DEALER AKTIF",
+      "TARGET NOO"
+    ]
+  },
+  {
+    "sheet": "Backup_Posisi_1789283275978",
+    "rows_including_header": 1000,
+    "data_rows": 999,
+    "headers": [
+      "NIK KARYAWAN",
+      "SALES",
+      "POSISI",
+      "REGION",
+      "NIK ATASAN",
+      "PIN AKSES"
+    ]
+  }
+]

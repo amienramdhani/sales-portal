@@ -1,0 +1,12 @@
+deploy/.env
+deploy/secrets/*
+!deploy/secrets/.gitkeep
+deploy/backups/*
+!deploy/backups/.gitkeep
+deploy/import/*
+!deploy/import/.gitkeep
+frontend/node_modules/
+frontend/dist/
+*.log
+*.tmp
+.DS_Store

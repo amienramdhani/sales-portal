@@ -1,0 +1,534 @@
+package core
+
+import (
+	"encoding/json"
+	"errors"
+	"fmt"
+	"math"
+	"regexp"
+	"sort"
+	"strconv"
+	"strings"
+	"time"
+)
+
+func Text(v any) string {
+	if v == nil {
+		return ""
+	}
+	return strings.TrimSpace(fmt.Sprint(v))
+}
+func Active(v any) bool {
+	s := strings.ToUpper(Text(v))
+	return v == true || s == "TRUE" || s == "YA" || s == "1"
+}
+
+// RoundJS2 follows the existing PortalCore.round contract closely: Math.round((n+EPSILON)*100)/100.
+func RoundJS2(n float64) float64 {
+	x := (n + math.Nextafter(1, 2) - 1) * 100
+	// JavaScript Math.round is floor(x+0.5), including negative half values.
+	return math.Floor(x+0.5) / 100
+}
+
+func Number(v any) (float64, error) {
+        s := strings.ReplaceAll(Text(v), " ", "")
+        s = strings.TrimPrefix(strings.ToUpper(s), "RP")
+        if s == "" {
+                return 0, errors.New("Nilai angka kosong.")
+        }
+        if strings.Contains(s, ",") && strings.Contains(s, ".") {
+                if strings.LastIndex(s, ",") > strings.LastIndex(s, ".") {
+                        s = strings.ReplaceAll(s, ".", "")
+                        s = strings.Replace(s, ",", ".", 1)
+                } else {
+                        s = strings.ReplaceAll(s, ",", "")
+                }
+        } else if strings.Contains(s, ",") {
+                s = strings.Replace(s, ",", ".", 1)
+        }
+        ok, _ := regexp.MatchString(`^-?\d+(\.\d+)?package core
+
+import (
+	"encoding/json"
+	"errors"
+	"fmt"
+	"math"
+	"regexp"
+	"sort"
+	"strconv"
+	"strings"
+	"time"
+)
+
+func Text(v any) string {
+	if v == nil {
+		return ""
+	}
+	return strings.TrimSpace(fmt.Sprint(v))
+}
+func Active(v any) bool {
+	s := strings.ToUpper(Text(v))
+	return v == true || s == "TRUE" || s == "YA" || s == "1"
+}
+
+// RoundJS2 follows the existing PortalCore.round contract closely: Math.round((n+EPSILON)*100)/100.
+func RoundJS2(n float64) float64 {
+	x := (n + math.Nextafter(1, 2) - 1) * 100
+	// JavaScript Math.round is floor(x+0.5), including negative half values.
+	return math.Floor(x+0.5) / 100
+}
+
+, s)
+        if !ok {
+                return 0, fmt.Errorf("Angka tidak valid: %s", s)
+        }
+        n, e := strconv.ParseFloat(s, 64)
+        if e != nil {
+                return 0, e
+        }
+        return n, nil
+}
+func ISO(s string) (string, error) {
+	s = strings.TrimSpace(s)
+	if len(s) >= 10 {
+		s = s[:10]
+	}
+	t, e := time.Parse("2006-01-02", s)
+	if e != nil || t.Format("2006-01-02") != s {
+		return "", fmt.Errorf("Tanggal harus YYYY-MM-DD: %s", s)
+	}
+	return s, nil
+}
+func Month(s string) (string, error) {
+	s = strings.TrimSpace(s)
+  ok, _ := regexp.MatchString("^[0-9]{4}-(0[1-9]|1[0-2])$", s)
+	if !ok {
+		return "", errors.New("Periode harus YYYY-MM.")
+	}
+	return s, nil
+}
+func Prev(p string) string {
+	t, _ := time.Parse("2006-01", p)
+	return t.AddDate(0, -1, 0).Format("2006-01")
+}
+func End(p string) string {
+	t, _ := time.Parse("2006-01", p)
+	return t.AddDate(0, 1, -1).Format("2006-01-02")
+}
+func Key(parts ...any) string { b, _ := json.Marshal(parts); return string(b) }
+func RolePosition(value string, schema int) string {
+	r := strings.ToUpper(strings.TrimSpace(value))
+	if schema == 1 {
+		if r == "SPV" || r == "SUPERVISOR" {
+			r = "ASM"
+		} else if r == "ASM" {
+			r = "RGM"
+		}
+	}
+	aliases := map[string]string{"COO": "CHIEF OPERATING OFFICER", "CCO": "CHIEF COMMERCIAL OFFICER", "CHIEF COMERCIAL OFFICER": "CHIEF COMMERCIAL OFFICER", "BOD": "BOARD OF DIRECTOR", "BOARD OF DIRECTORS": "BOARD OF DIRECTOR"}
+	if x := aliases[r]; x != "" {
+		r = x
+	}
+	return r
+}
+
+func Scope(people []Person, nik string) ([]string, error) {
+	var root *Person
+	for i := range people {
+		if people[i].NIK == nik {
+			root = &people[i]
+			break
+		}
+	}
+	if root == nil {
+		return nil, errors.New("Pengguna tidak ada dalam master.")
+	}
+	if root.Role == "ADMIN" {
+		out := []string{nik}
+		allowed := map[string]bool{}
+		for _, r := range root.AdminRegions {
+			allowed[r] = true
+		}
+		for _, p := range people {
+			if p.NIK != nik && (p.Role == "SALES" || p.Role == "ASM" || p.Role == "RGM") && allowed[p.BigRegion] {
+				out = append(out, p.NIK)
+			}
+		}
+		return uniqueStrings(out), nil
+	}
+	if Level[root.Role] >= 4 {
+		out := make([]string, 0, len(people))
+		for _, p := range people {
+			out = append(out, p.NIK)
+		}
+		return uniqueStrings(out), nil
+	}
+	set := map[string]bool{nik: true}
+	changed := true
+	for changed {
+		changed = false
+		for _, p := range people {
+			if p.Supervisor != "" && set[p.Supervisor] && !set[p.NIK] {
+				set[p.NIK] = true
+				changed = true
+			}
+		}
+	}
+	out := make([]string, 0, len(set))
+	for k := range set {
+		out = append(out, k)
+	}
+	sort.Strings(out)
+	return out, nil
+}
+
+func Slice(db *DB, period string, ids []string, cutoff string) []DailyRow {
+	set := toSet(ids)
+	out := []DailyRow{}
+	for _, r := range db.Rows[period] {
+		if set[r.NIK] && (cutoff == "" || r.Date <= cutoff) {
+			out = append(out, r)
+		}
+	}
+	return out
+}
+func SliceCompare(db *DB, period string, ids []string, cutoff, selected string) []DailyRow {
+	latest := ""
+	for p := range db.Coverage {
+		if p > latest {
+			latest = p
+		}
+	}
+	if selected != "" && selected != latest {
+		return Slice(db, period, ids, cutoff)
+	}
+	set := toSet(ids)
+	out := []DailyRow{}
+	for _, r := range db.Rows[period] {
+		if cutoff != "" && r.Date > cutoff {
+			continue
+		}
+		if c, ok := db.Customers[r.Customer]; ok && c.NIK != "" && c.NIK != r.NIK {
+			r.NIK = c.NIK
+		}
+		if set[r.NIK] {
+			out = append(out, r)
+		}
+	}
+	return out
+}
+
+func CalculateMetrics(rows []DailyRow, db *DB, period, brand string, minDA, minNOO int) Metrics {
+	if minDA <= 0 {
+		minDA = 2
+	}
+	if minNOO <= 0 {
+		minNOO = 1
+	}
+	var qty int64
+	var rev, acc float64
+	pairs := map[string]int64{}
+	pairRows := map[string][]DailyRow{}
+	docs := map[string]bool{}
+	customers := map[string]bool{}
+	for _, r := range rows {
+		if brand != "" && brand != "ALL" && r.Brand != brand {
+			continue
+		}
+		qty += r.Qty
+		rev += r.Amount
+		acc += r.Accessory
+		for _, d := range r.Docs {
+			docs[d] = true
+		}
+		k := Key(r.Customer, r.Brand)
+		pairs[k] += r.Qty
+		pairRows[k] = append(pairRows[k], r)
+	}
+	da, noo := 0, 0
+	pending := false
+	for k, q := range pairs {
+		if q >= int64(minDA) {
+			da++
+		}
+		if q > 0 {
+			var p []string
+			_ = json.Unmarshal([]byte(k), &p)
+			if len(p) > 0 {
+				customers[p[0]] = true
+			}
+			f, has := db.First[k]
+			if db.Unlinked[k] {
+				pending = true
+			}
+			if q >= int64(minNOO) && has && strings.HasPrefix(f.Date, period) {
+				for _, r := range pairRows[k] {
+					if r.NIK == f.NIK && r.Date == f.Date {
+						noo++
+						break
+					}
+				}
+			}
+		}
+	}
+	return Metrics{Qty: qty, Revenue: RoundJS2(rev), Accessory: RoundJS2(acc), ActiveDealer: da, NOO: noo, Outlets: len(customers), Notes: len(docs), NOOPending: pending}
+}
+
+func TargetFor(db *DB, period string, ids []string, brand, metric, indicator string) (float64, []string, bool) {
+	set := toSet(ids)
+	eligible := map[string]bool{}
+	for _, p := range db.People {
+		if set[p.NIK] && p.Sales {
+			eligible[p.NIK] = true
+		}
+	}
+	found := map[string]bool{}
+	sum := 0.0
+	exists := false
+	for _, t := range db.Targets {
+		if t.Period == period && eligible[t.NIK] && t.Brand == brand && t.Metric == metric && t.Indicator == indicator {
+			sum += t.Value
+			found[t.NIK] = true
+			exists = true
+		}
+	}
+	missing := []string{}
+	for id := range eligible {
+		if !found[id] {
+			missing = append(missing, id)
+		}
+	}
+	sort.Strings(missing)
+	return sum, missing, exists
+}
+
+func KPI(db *DB, period string, ids []string, region string) KPIResult {
+	reg := region
+	sub := ""
+	subs := map[string]bool{}
+	set := toSet(ids)
+	for _, p := range db.People {
+		if set[p.NIK] && p.Sales {
+			v := strings.ToUpper(firstNonEmpty(p.Portfolio, p.Region))
+			subs[v] = true
+		}
+	}
+	if len(subs) == 1 {
+		for s := range subs {
+			for _, p := range db.Policies {
+				if p.Period == period && strings.ToUpper(p.Region) == s {
+					reg = p.Region
+					sub = reg
+					break
+				}
+			}
+		}
+	}
+	cfg := []Policy{}
+	for _, p := range db.Policies {
+		if p.Period == period && p.Region == reg {
+			cfg = append(cfg, p)
+		}
+	}
+	rows := Slice(db, period, ids, "")
+	groupNames := []string{}
+	seen := map[string]bool{}
+	for _, p := range cfg {
+		if !seen[p.Group] {
+			seen[p.Group] = true
+			groupNames = append(groupNames, p.Group)
+		}
+	}
+	groups := []KPIGroup{}
+	tentative := false
+	for _, gname := range groupNames {
+		weighted, weights := 0.0, 0.0
+		pending := false
+		indicators := []KPIIndicator{}
+		for _, c := range cfg {
+			if c.Group != gname {
+				continue
+			}
+			tv, missing, _ := TargetFor(db, period, ids, c.Brand, c.Metric, c.Indicator)
+			rr := rows
+			if len(c.Types) > 0 {
+				types := toSet(c.Types)
+				tmp := []DailyRow{}
+				for _, r := range rr {
+					if types[r.Type] {
+						tmp = append(tmp, r)
+					}
+				}
+				rr = tmp
+			}
+			m := CalculateMetrics(rr, db, period, c.Brand, c.MinDA, c.MinNOO)
+			actual := metricValue(m, c.Metric)
+			state := "BERLAKU"
+			var ach, score *float64
+			if tv == 0 && len(missing) == 0 {
+				state = "TIDAK DIWAJIBKAN"
+			} else if tv > 0 {
+				a := actual / tv * 100
+				s := math.Min(c.Cap, math.Max(0, a))
+				ach = &a
+				score = &s
+				weighted += s * c.Weight
+				weights += c.Weight
+				if len(missing) > 0 {
+					state = fmt.Sprintf("SEMENTARA · %d sales belum ada target", len(missing))
+					tentative = true
+				} else if c.Metric == "NOO" && m.NOOPending {
+					state = "SEMENTARA · verifikasi retur"
+					tentative = true
+				}
+			} else {
+				state = "TARGET BELUM LENGKAP"
+				pending = true
+			}
+			indicators = append(indicators, KPIIndicator{Indicator: c.Indicator, Label: c.Label, Metric: c.Metric, Brand: c.Brand, State: state, Types: c.Types, MinDA: c.MinDA, Weight: c.Weight, Cap: c.Cap, Target: tv, Actual: actual, Ach: ach, Score: score})
+		}
+		var gs *float64
+		if weights > 0 {
+			x := weighted / weights
+			gs = &x
+		}
+		groups = append(groups, KPIGroup{Name: gname, Score: gs, Pending: pending && weights == 0, Partial: pending && weights > 0, NA: !pending && weights == 0, Indicators: indicators})
+	}
+	scored := []float64{}
+	pendingAny := len(groups) == 0 || tentative
+	for _, g := range groups {
+		if g.Pending || g.Partial {
+			pendingAny = true
+		}
+		if !g.NA && g.Score != nil {
+			scored = append(scored, *g.Score)
+		}
+	}
+	var score *float64
+	if len(scored) > 0 {
+		x := 0.0
+		for _, v := range scored {
+			x += v
+		}
+		x /= float64(len(scored))
+		score = &x
+	}
+	status := "FINAL"
+	if len(groups) == 0 {
+		status = "KEBIJAKAN BELUM DIISI"
+	} else if len(scored) == 0 {
+		anyPending := false
+		for _, g := range groups {
+			anyPending = anyPending || g.Pending
+		}
+		if anyPending {
+			status = "BELUM FINAL"
+		} else {
+			status = "TIDAK DIWAJIBKAN"
+		}
+	} else if pendingAny {
+		status = "SEMENTARA"
+	}
+	return KPIResult{Region: region, Sub: sub, Status: status, Tentative: tentative, Score: score, Count: len(scored), Groups: groups}
+}
+
+func ComparisonPeriod(db *DB, p string) (period, cutoff string, available bool) {
+	info, ok := db.Coverage[p]
+	if !ok {
+		return Prev(p), "", false
+	}
+	prior := Prev(p)
+	if info.Closed {
+		cutoff = End(prior)
+	} else {
+		d := info.Cutoff
+		if len(d) >= 10 {
+			day, _ := strconv.Atoi(d[8:10])
+			ed, _ := strconv.Atoi(End(prior)[8:10])
+			if day > ed {
+				day = ed
+			}
+			cutoff = fmt.Sprintf("%s-%02d", prior, day)
+		}
+	}
+	pr, ok := db.Coverage[prior]
+	return prior, cutoff, ok && pr.Cutoff >= cutoff
+}
+
+func Workdays(period, cutoff string, closed bool, holidays HolidaySet) (days, run int, err error) {
+	_, err = Month(period)
+	if err != nil {
+		return
+	}
+	start, _ := time.Parse("2006-01-02", period+"-01")
+	end, _ := time.Parse("2006-01-02", End(period))
+	cut, _ := time.Parse("2006-01-02", cutoff)
+	for d := start; !d.After(end); d = d.AddDate(0, 0, 1) {
+		if d.Weekday() == time.Sunday || holidays[d.Format("2006-01-02")] {
+			continue
+		}
+		days++
+		if closed || !d.After(cut) {
+			run++
+		}
+	}
+	return
+}
+func Pace(actual, target float64, days, run int) WorkdayInfo {
+	tg := 0.0
+	if days > 0 {
+		tg = float64(run) / float64(days) * 100
+	}
+	est := 0.0
+	if run > 0 {
+		est = actual / float64(run) * float64(days)
+	}
+	var need *float64
+	if days-run > 0 {
+		x := math.Max(0, target-actual) / float64(days-run)
+		need = &x
+	}
+	return WorkdayInfo{Days: days, Run: run, TimeGone: tg, Estimate: est, NeedPerDay: need}
+}
+
+func metricValue(m Metrics, metric string) float64 {
+	switch metric {
+	case "QTY":
+		return float64(m.Qty)
+	case "DA":
+		return float64(m.ActiveDealer)
+	case "NOO":
+		return float64(m.NOO)
+	case "OMZET":
+		return m.Revenue
+	}
+	return 0
+}
+func toSet(a []string) map[string]bool {
+	m := map[string]bool{}
+	for _, v := range a {
+		m[v] = true
+	}
+	return m
+}
+func uniqueStrings(a []string) []string {
+	m := map[string]bool{}
+	o := []string{}
+	for _, v := range a {
+		if !m[v] {
+			m[v] = true
+			o = append(o, v)
+		}
+	}
+	return o
+}
+func firstNonEmpty(a, b string) string {
+	if a != "" {
+		return a
+	}
+	return b
+}
+
+
+
+

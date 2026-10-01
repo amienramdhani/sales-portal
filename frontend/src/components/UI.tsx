@@ -1,0 +1,6 @@
+import React from 'react';
+export const Panel=({title,children,actions}:{title:string,children:React.ReactNode,actions?:React.ReactNode})=><section className="panel"><div className="panel-head"><h2>{title}</h2>{actions}</div>{children}</section>;
+export const Metric=({label,value,sub}:{label:string,value:any,sub?:string})=><div className="metric"><small>{label}</small><strong>{value??'—'}</strong>{sub&&<span>{sub}</span>}</div>;
+export function Table({rows}:{rows:any[]}){if(!rows?.length)return <div className="empty">Belum ada data.</div>;const cols=Object.keys(rows[0]).slice(0,12);return <div className="tablewrap"><table><thead><tr>{cols.map(c=><th key={c}>{c}</th>)}</tr></thead><tbody>{rows.map((r,i)=><tr key={i}>{cols.map(c=><td key={c}>{format(r[c])}</td>)}</tr>)}</tbody></table></div>}
+function format(v:any){if(v==null)return '—';if(typeof v==='object')return JSON.stringify(v);if(typeof v==='number')return new Intl.NumberFormat('id-ID',{maximumFractionDigits:2}).format(v);return String(v)}
+export function Spark({values}:{values:number[]}){const max=Math.max(1,...values),w=500,h=160;const pts=values.map((v,i)=>`${i*(w/Math.max(1,values.length-1))},${h-v/max*(h-20)-10}`).join(' ');return <svg className="spark" viewBox={`0 0 ${w} ${h}`} preserveAspectRatio="none"><polyline fill="none" stroke="currentColor" strokeWidth="4" points={pts}/></svg>}
